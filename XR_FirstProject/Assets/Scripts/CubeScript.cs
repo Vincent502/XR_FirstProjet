@@ -3,6 +3,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
+
+#region Les differents Objectif realiser
+    /* 
+        Interation avec un gameObject
+        Ajout d'evenement lorsque l'on passe devant
+        Ajout d'evenement lorqque l'on clic
+        Apprend a changer la couleur/taille/position
+    */
+#endregion
+
+
+
 public class Cube_Script : MonoBehaviour
 {
     
@@ -15,7 +27,24 @@ public class Cube_Script : MonoBehaviour
     private Transform _myTransform;
     private Material _material;
     private MeshRenderer _meshRend;
+    private bool _isRotating;
     private bool _toggleClic = false;
+
+    private float _initialScaleX = 1f;
+    private float _initialScaleY = 1f;
+    private float _initialScaleZ = 1f;
+    [Header("Scale Settings")]
+    [SerializeField, Range(1, 3)]
+    private float _anotheScaleX = 1f;
+    [SerializeField,Range(1,3)]
+    private float _anotheScaleY = 1f;
+    [SerializeField,Range(1,3)]
+    private float _anotheScaleZ = 1f;
+
+    private float _currentTime;
+    [SerializeField]
+    private float _colorChangeTime = 2f;
+
 
     private void Awake()
     {
@@ -28,51 +57,64 @@ public class Cube_Script : MonoBehaviour
         _myTransform = transform;
         _meshRend = GetComponent<MeshRenderer>();
         _material = _meshRend.material ;
-        _randomX = Random.Range(0.0f, 1.0f);
-        _randomY = Random.Range(0.0f, 1.0f);
-        _randomZ = Random.Range(0.0f, 1.0f);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_toggleClic)
+        _myTransform.position += _myTransform.forward * movementSpeed * Time.deltaTime;
+        _currentTime += Time.deltaTime;
+        if ( _currentTime >= _colorChangeTime )
         {
-            _myTransform.rotation *= Quaternion.Euler(rotationSpeed * Time.deltaTime, 0, 0);
+            _currentTime = 0;
+            _randomX = Random.Range(0.0f, 1.0f);
+            _randomY = Random.Range(0.0f, 1.0f);
+            _randomZ = Random.Range(0.0f, 1.0f);
+            _material.color = new Color(_randomX, _randomY, _randomZ);
+            _myTransform.localScale = new Vector3(_anotheScaleX, _anotheScaleY, _anotheScaleZ);
         }
+
+
+        //placer les actions qui doit etre realiser celon des condition
+        if (!_isRotating) return; 
+        
         Quaternion currentRotation = _myTransform.rotation;
         currentRotation = currentRotation * Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0);
         _myTransform.rotation = currentRotation;
+        
+        if (!_toggleClic) return ;
+        _myTransform.rotation *= Quaternion.Euler(rotationSpeed * Time.deltaTime, 0, 0);
 
 
-        _myTransform.position += _myTransform.forward * movementSpeed * Time.deltaTime;
 
     }
+    //Lors du clic on change l'etat de toggleClic
     void OnMouseDown()
     {
-        print("j'ai eu un click");
-        _toggleClic = !_toggleClic;
-
-        print(_toggleClic);
-        
-        
+        //_toggleClic = !_toggleClic;
+        _isRotating = !_isRotating;
     }
     private void OnMouseOver()
     {
         
-        // peut afficher les data playeur en viser 
-        print("ca passe devant");
-        //_material.color = Color.red;
+        //Intervien quand le curseur passe devant l'objet
         
             
     }
     private void OnMouseEnter()
     {
+        _randomX = Random.Range(0.0f, 1.0f);
+        _randomY = Random.Range(0.0f, 1.0f);
+        _randomZ = Random.Range(0.0f, 1.0f);
         _material.color = new Color(_randomX, _randomY, _randomZ);
+        _myTransform.localScale = new Vector3(_anotheScaleX ,_anotheScaleY ,_anotheScaleZ);  
+        
     }
     private void OnMouseExit()
     {
         _material.color = _colorInit;
+        _myTransform.localScale = new Vector3(_initialScaleX, _initialScaleY, _initialScaleZ);
     }
 }
 
