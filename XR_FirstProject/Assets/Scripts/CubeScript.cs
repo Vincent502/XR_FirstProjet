@@ -10,6 +10,7 @@ using UnityEngine.Windows;
         Ajout d'evenement lorsque l'on passe devant
         Ajout d'evenement lorqque l'on clic
         Apprend a changer la couleur/taille/position
+        realisation d'un timer qui modifie la couleur
     */
 #endregion
 
@@ -33,13 +34,15 @@ public class Cube_Script : MonoBehaviour
     private float _initialScaleX = 1f;
     private float _initialScaleY = 1f;
     private float _initialScaleZ = 1f;
-    [Header("Scale Settings")]
-    [SerializeField, Range(1, 3)]
-    private float _anotheScaleX = 1f;
-    [SerializeField,Range(1,3)]
-    private float _anotheScaleY = 1f;
-    [SerializeField,Range(1,3)]
-    private float _anotheScaleZ = 1f;
+    //[Header("Scale Settings")]
+
+    //[SerializeField, Range(1, 3)]
+    //private float _anotheScaleX = 1f;
+    //[SerializeField,Range(1,3)]
+    //private float _anotheScaleY = 1f;
+    //[SerializeField,Range(1,3)]
+    //private float _anotheScaleZ = 1f;
+
 
     private float _currentTime;
     [SerializeField]
@@ -52,7 +55,7 @@ public class Cube_Script : MonoBehaviour
         Debug.Log("Le programme se reveille - Awake Debug Log");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         _myTransform = transform;
         _meshRend = GetComponent<MeshRenderer>();
@@ -61,7 +64,7 @@ public class Cube_Script : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         _myTransform.position += _myTransform.forward * movementSpeed * Time.deltaTime;
         _currentTime += Time.deltaTime;
@@ -72,7 +75,7 @@ public class Cube_Script : MonoBehaviour
             _randomY = Random.Range(0.0f, 1.0f);
             _randomZ = Random.Range(0.0f, 1.0f);
             _material.color = new Color(_randomX, _randomY, _randomZ);
-            _myTransform.localScale = new Vector3(_anotheScaleX, _anotheScaleY, _anotheScaleZ);
+            
         }
 
 
@@ -102,19 +105,29 @@ public class Cube_Script : MonoBehaviour
         
             
     }
-    private void OnMouseEnter()
-    {
-        _randomX = Random.Range(0.0f, 1.0f);
-        _randomY = Random.Range(0.0f, 1.0f);
-        _randomZ = Random.Range(0.0f, 1.0f);
-        _material.color = new Color(_randomX, _randomY, _randomZ);
-        _myTransform.localScale = new Vector3(_anotheScaleX ,_anotheScaleY ,_anotheScaleZ);  
+    //private void OnMouseEnter()
+    //{
         
-    }
+    //    _randomX = Random.Range(0.0f, 1.0f);
+    //    _randomY = Random.Range(0.0f, 1.0f);
+    //    _randomZ = Random.Range(0.0f, 1.0f);
+    //    _material.color = new Color(_randomX, _randomY, _randomZ);
+    //    _myTransform.localScale = new Vector3(_anotheScaleX ,_anotheScaleY ,_anotheScaleZ);  
+        
+    //}
     private void OnMouseExit()
     {
         _material.color = _colorInit;
         _myTransform.localScale = new Vector3(_initialScaleX, _initialScaleY, _initialScaleZ);
+    }
+    public void SayHello()
+    {
+        _isRotating=!_isRotating;
+        _randomX = Random.Range(0.0f, 1.0f);
+        _randomX = Random.Range(0.0f, 1.0f);
+        _randomY = Random.Range(0.0f, 1.0f);
+        _randomZ = Random.Range(0.0f, 1.0f);
+        _material.color = new Color(_randomX, _randomY, _randomZ);
     }
 }
 

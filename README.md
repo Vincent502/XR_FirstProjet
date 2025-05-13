@@ -8,4 +8,7 @@
 
  ## 13/05/25
     
-    -fin des apprentissage de manipulation des composant de scene
+    - fin des apprentissage de manipulation des composant de scene
+    - travaille d'apres midi :
+      * concevoir des actions precedements apprise et realisation des objectif donner par le prof
+      * mise en place d'un inventaire (debut)

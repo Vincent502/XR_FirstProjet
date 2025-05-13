@@ -1,0 +1,32 @@
+1. Bouton qui affiche un message
+Crée un Canvas avec un bouton.
+
+Lorsqu’on clique dessus, affiche un texte dans un Text ou TMP_Text avec un message (“Bonjour !”).
+
+2. Changer la couleur d’un objet
+Clique sur un bouton pour changer la couleur d’un Image.
+
+3. Slider qui modifie la taille d’un objet
+Ajoute un Slider.
+
+Lorsqu’on le bouge, il modifie dynamiquement la taille d’un objet (cube, texte, etc.).
+
+4. Formulaire de pseudo
+Champ InputField pour entrer un nom.
+
+Bouton pour valider, et afficher “Bienvenue, [Nom]” dans un Text.
+
+5. Barre de vie
+Utilise une Slider ou Image fill pour afficher une barre de vie.
+
+Ajoute deux boutons : un pour infliger des dégâts, l’autre pour soigner.
+
+6. Changer de panneau
+Crée plusieurs Panel (par exemple : menu principal, options, crédits).
+
+Utilise des boutons pour naviguer entre ces panneaux.
+
+7. Chronomètre ou minuteur
+Ajoute un Text ou TMP_Text qui affiche un temps qui s’écoule.
+
+Bonus : bouton Pause / Reprendre.

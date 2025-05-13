@@ -1,0 +1,55 @@
+Objectif :
+Créer un système d'inventaire avec UI dynamique, supportant :
+
+1. Ajout/Retrait d’objets
+2. Drag & Drop entre slots
+3. Affichage des infos (tooltips)
+4. Sauvegarde/Chargement via fichier JSON
+
+
+Spécifications de l’exercice :
+
+1. Architecture de données
+Créer un ScriptableObject nommé ItemData avec :
+
+- string itemName
+- Sprite icon
+- int maxStack
+- string description
+- enum Category
+
+Créer une classe InventoryItem avec :
+
+- ItemData itemData
+- int quantity
+
+2. Système d’inventaire
+Créer une classe Inventory :
+
+- Liste de InventoryItem
+- Méthodes : AddItem(), RemoveItem(), MoveItem(int fromIndex, int toIndex) 
+- Ajouter un système de slots dynamiques (grille avec ScrollView) :
+	- Chaque slot peut contenir un item ou rester vide
+	- Affiche l’icône et la quantité
+	- Drag & Drop pour déplacer un item
+
+3. Drag & Drop
+Permettre de :
+- Glisser un objet d’un slot vers un autre
+- Empiler si même type
+- Utiliser EventTrigger pour les événements : OnBeginDrag, OnDrag, OnDrop
+
+4. Tooltip d’objet
+Lors du survol d’un slot avec la souris, afficher un panneau flottant avec :
+- Nom de l’objet
+- Description
+- Icône
+
+5. Sauvegarde / Chargement
+Sauvegarder le contenu de l’inventaire en JSON dans un fichier local
+Recharger au lancement du jeu
+
+Bonus :
+- Filtrer les objets par catégorie (armes, potions…)
+- Système d’objets utilisables (ex : clic droit pour consommer)
+
