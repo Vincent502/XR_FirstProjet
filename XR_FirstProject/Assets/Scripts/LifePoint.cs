@@ -21,7 +21,7 @@ public class LifePoint : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _lifeBar = GetComponent<Slider>();
+        _lifeBar.interactable = false;
     }
 
     // Update is called once per frame
