@@ -12,3 +12,7 @@
     - travaille d'apres midi :
       * concevoir des actions precedements apprise et realisation des objectif donner par le prof
       * mise en place d'un inventaire (debut)
+
+## 14/05/25
+    - manipulation de l'ui 
+    - annimation avec tween
