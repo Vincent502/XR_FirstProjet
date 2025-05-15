@@ -21,6 +21,7 @@ public class Cube_Script : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
     public float jumpForce = 5f; // Force de saut
+    private float canJump = 1f;
 
     
     private bool isMovingForward = false;
@@ -71,10 +72,11 @@ public class Cube_Script : MonoBehaviour
     }
 
 
-    // on verifie les collision
-    private void OnCollisionEnter(Collision collision)
+    // On verifie les collision
+    void OnCollisionEnter(Collision collision)
     {
-        var layeur = collision.gameObject.layer;
+        
+        LayerMask layeur = collision.gameObject.layer;
         if(layeur == 3)
         {
             isGrounded = true;
